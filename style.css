@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+/* Container */
+.envelope-container {
+    position: relative;
+    text-align: center;
+}
+
+/* ENVELOPE BODY */
+.envelope {
+    position: relative;
+    width: 320px;
+    height: 200px;
+    background: #ffb6c1;
+    border-radius: 6px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Glow when hovered */
+.envelope:hover {
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+    transform: scale(1.05);
+}
+
+/* ENVELOPE FLAP */
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 100px solid #ff8fa3;
+    transform-origin: top;
+    transition: transform 1s ease-in-out;
+    z-index: 3;
+}
+
+/* ENVELOPE POCKET */
+.pocket {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    background: #ffb6c1;
+    border-radius: 0 0 6px 6px;
+    z-index: 2;
+}
+
+/* Wax Seal */
+.wax-seal {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: #c62828;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 4;
+    transition: transform 0.3s ease;
+}
+
+/* Wax Seal Hover Glow */
+.wax-seal:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 82, 82, 0.7);
+}
+
+/* Ribbon */
+.envelope::after {
+    content: '';
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: #d6336c;
+    opacity: 0.7;
+    z-index: 2;
+}
+
+/* Click Text */
+.click-text {
+    margin-top: 220px;
+    font-weight: bold;
+    color: #d6336c;
+}
+
+/* CARD */
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 90vw;
+    max-width: 700px;
+    min-height: 400px;
+    max-height: 90vh;
+    background: #fff5f5;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    padding: 30px;
+    text-align: left;
+    box-sizing: border-box;
+    transition: transform 0.7s ease-out, opacity 0.7s ease-out;
+    opacity: 0;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+/* Card Animation */
+.card.pop-up {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    z-index: 5;
+}
+
+/* Light Burst Effect */
+.card.pop-up::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 240, 245, 0.6), transparent);
+    transform: translate(-50%, -50%) scale(0);
+    animation: burst 0.8s ease-out forwards;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+@keyframes burst {
+    to { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
+}
+
+/* Card Content */
+.card h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    color: #d6336c;
+    margin-bottom: 15px;
+}
+.card p {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* Photo */
+.photo {
+    display: block;
+    margin: 20px auto;
+    width: 65%;
+    max-width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Signature */
+.signature {
+    font-family: 'Pacifico', cursive;
+    margin-top: 15px;
+    font-size: 24px;
+    color: #d6336c;
+    font-weight: bold;
+}
+
+/* OPEN ANIMATION */
+.flap.open {
+    transform: rotateX(180deg);
+}
+
+/* Emoji Floating */
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-60px) scale(1.3); opacity: 0.9; }
+    100% { transform: translateY(-140px) scale(1); opacity: 0; }
+}
+.floating-emoji {
+    position: absolute;
+    font-size: 24px;
+    animation: floatUp 2.5s ease forwards;
+    pointer-events: none;
+}

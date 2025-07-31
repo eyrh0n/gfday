@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Girlfriend’s Day ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="envelope-container">
+  
+  <!-- Envelope -->
+  <div class="envelope">
+    <div class="flap"></div>
+    <div class="pocket"></div>
+    <div class="wax-seal">❤️</div>
+    <p class="click-text">💌 Click to Open 💌</p>
+  </div>
+
+  <!-- Greeting Card -->
+  <div class="card">
+    <h2>Dear, Alex</h2>
+    <p>
+      Happy girlfriend's day bb!! Thank you for being the best (and hottest + prettiest ) girlfriend ever, I don't want anyone else but you. <br>
+      You are, and will always be loved by me, for as long as I exist.<br>
+      Looking forward to more endless memories wd u. <br> I really am damn blessed and lucky to have you in my life.
+    </p>
+    <img src="IMG.jfif" alt="Our Photo" class="photo">
+    <p class="signature">Love, <br> your sweetest drug</p>
+    <br>
+    <div class="tenor-gif-embed" data-postid="4736403030433414453" data-share-method="host" data-aspect-ratio="1.22059" data-width="100%"><a href="https://tenor.com/view/cat-cute-sweet-gif-4736403030433414453">Cat Cute Sticker</a>from <a href="https://tenor.com/search/cat-stickers">Cat Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+  
+  </div>
+
+</div>
+
+<script>
+const flap = document.querySelector('.flap');
+const card = document.querySelector('.card');
+const envelope = document.querySelector('.envelope');
+const waxSeal = document.querySelector('.wax-seal');
+
+// 🎉 Wax Seal + Flap + Card Animation
+envelope.addEventListener('click', () => {
+  // Seal pops off first
+  waxSeal.style.transform = "translateX(-50%) translateY(-100px) scale(0)";
+  waxSeal.style.opacity = "0";
+  waxSeal.style.transition = "all 0.6s ease";
+
+  // Flap opens after short delay
+  setTimeout(() => {
+    flap.classList.add('open');
+  }, 300);
+
+  // Card pops up
+  setTimeout(() => {
+    card.classList.add('pop-up');
+  }, 700);
+});
+
+// ❤️ Floating Hearts
+const emojis = ['❤️', '🤍', '💕', '💖', '💘', '✨', '💞']; 
+envelope.addEventListener('click', () => {
+  let count = 0;
+
+  const burst = setInterval(() => {
+    for (let i = 0; i < 3; i++) {
+      const emoji = document.createElement('div');
+      emoji.classList.add('floating-emoji');
+      emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+      emoji.style.left = Math.random() * window.innerWidth + 'px';
+      emoji.style.top = (window.innerHeight - 150) + 'px';
+      emoji.style.fontSize = (20 + Math.random() * 18) + 'px';
+
+      document.body.appendChild(emoji);
+
+      const driftX = Math.random() * 100 - 50; 
+      emoji.animate(
+        [
+          { transform: `translate(0, 0)`, opacity: 1 },
+          { transform: `translate(${driftX}px, -80px) scale(1.2)`, opacity: 0.8 },
+          { transform: `translate(${driftX * 1.5}px, -160px) scale(1)`, opacity: 0 }
+        ],
+        { duration: 2500, easing: 'ease-out', fill: 'forwards' }
+      );
+
+      setTimeout(() => emoji.remove(), 2500);
+    }
+
+    count++;
+    if (count > 8) { clearInterval(burst); }
+  }, 300);
+});
+</script>
+
+</body>
+</html>
